@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     //移动速度
     public float moveSpeed = 6.0f;
     //视野转动速度
-    float speedX = 5f, speedY = 5f;
+    float speedX = 2f, speedY = 2f;
     //观察变化量
     float rotationX, rotationY;
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         //machine.AddState(run);
         //machine.AddState(attack);
     }
-    private float recordCurrentYangel = 0;
+
     void Update()
     {
         PlayerMoveByKey();
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
-            recordCurrentYangel = this.transform.eulerAngles.y;
+            rotationX = this.transform.eulerAngles.y;
         }
 
         if (Input.GetMouseButton(1))
@@ -131,11 +131,13 @@ public class PlayerController : MonoBehaviour
         }
         this.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
     }
+
     /// <summary> 键盘AD控制左右旋转 </summary>
     private void PlayerRotateByKey()
     {
-        float h = 50 * Input.GetAxis("Horizontal");
-        transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);
+        rotationX += Input.GetAxis("Horizontal") * speedX;
+        //  transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);
+        this.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
     }
     #endregion
 }

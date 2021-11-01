@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Height: 0.34
   m_Distance: 3.02
-  m_Speed: 4
+  m_Speed: 10
   follow: {fileID: 1107073344}
 --- !u!114 &660400676
 MonoBehaviour:
