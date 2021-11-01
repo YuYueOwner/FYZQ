@@ -146,9 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ani: {fileID: 0}
   ps: 1
-  speed: 6
-  jumpSpeed: 8
-  gravity: 20
+  moveSpeed: 6
 --- !u!143 &559376207
 CharacterController:
   m_ObjectHideFlags: 0
@@ -256,11 +254,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660400671}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3039999, z: -3.29}
+  m_LocalPosition: {x: 0, y: 2.31, z: -3.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1107073344}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &660400673
 AudioListener:
@@ -324,6 +322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de108d8e30d13347a2c1dfc3be01cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Height: 0.34
+  m_Distance: 3.02
+  m_Speed: 4
+  follow: {fileID: 1107073344}
 --- !u!114 &660400676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,8 +369,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 660400672}
+  m_Children: []
   m_Father: {fileID: 559376210}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -12,19 +12,19 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    private CharacterController characterController;
     [HideInInspector]
     public Animator ani;
     public PlayerState ps = PlayerState.Idle;
     //控制机器
-
-    #region move
     public StateMachine machine;
-    public float speed = 6.0F;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
-    private Vector3 moveDirection = Vector3.zero;
-    private CharacterController characterController;
-    #endregion
+
+    //移动速度
+    public float moveSpeed = 6.0f;
+    //视野转动速度
+    float speedX = 5f, speedY = 5f;
+    //观察变化量
+    float rotationX, rotationY;
 
     void Start()
     {
@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     private float recordCurrentYangel = 0;
     void Update()
     {
-        Move();
+        PlayerMoveByKey();
+        PlayerRotateByKey();
 
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
@@ -51,43 +52,27 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            CameraView();
+            PlayerRotateByMouse();
         }
 
-        //鼠标左键按住行走
+        //鼠标左键按住可行走可旋转
         if (Input.GetMouseButton(0))
         {
-            CameraView();
-            Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
-            characterController.SimpleMove(forward * speed);
+            //旋转
+            PlayerRotateByMouse();
+            //往前走
+            PlayerMoveByMouse();
         }
 
         //if (Input.GetMouseButtonDown(0))
-        //{
         //    ps = PlayerState.Attack;
-        //}
         //if (Input.GetKey(KeyCode.A))
-        //{
         //    ps = PlayerState.Run;
-        //}
         //if (Input.GetKeyUp(KeyCode.A))
-        //{
         //    ps = PlayerState.Idle;
-        //}
 
         //根据枚举 让状态机器类去切换状态
         //  UpdateAnimation();
-    }
-
-
-    //前后移动
-    private void Move()
-    {
-        Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
-        float curSpeed = speed * Input.GetAxis("Vertical");
-        characterController.SimpleMove(forward * curSpeed);
-        float h = 50 * Input.GetAxis("Horizontal");
-        transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);　//左右旋转
     }
 
 
@@ -112,9 +97,45 @@ public class PlayerController : MonoBehaviour
         // machine.Update();
     }
 
-    /// <summary> 相机视角 </summary>
-    private void CameraView()
+
+    #region 控制移动
+    /// <summary>鼠标控制玩家往前移动</summary>
+    private void PlayerMoveByMouse()
     {
-        CameraControl._instance.PlayerVerticleRotate(this.transform);
+        Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
+        characterController.SimpleMove(forward * moveSpeed);
     }
+
+    /// <summary>键盘控制前后移动</summary>
+    private void PlayerMoveByKey()
+    {
+        Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
+        float curSpeed = moveSpeed * Input.GetAxis("Vertical");
+        characterController.SimpleMove(forward * curSpeed);
+    }
+    #endregion
+
+
+    #region 控制旋转
+    /// <summary> 鼠标控制视角左右旋转 </summary>
+    private void PlayerRotateByMouse()
+    {
+        rotationX += Input.GetAxis("Mouse X") * speedX;
+        if (rotationX < 0)
+        {
+            rotationX += 360;
+        }
+        if (rotationX > 360)
+        {
+            rotationX -= 360;
+        }
+        this.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+    }
+    /// <summary> 键盘AD控制左右旋转 </summary>
+    private void PlayerRotateByKey()
+    {
+        float h = 50 * Input.GetAxis("Horizontal");
+        transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);
+    }
+    #endregion
 }

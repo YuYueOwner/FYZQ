@@ -4,63 +4,25 @@ using UnityEngine;
 using UnityEngine.AI;
 public class CameraControl : MonoBehaviour
 {
-    public static CameraControl _instance;
-    //视野转动速度
-    float speedX = 5f;
-    float speedY = 5f;
-    //上下观察范围
-    float minY = -60;
-    float maxY = 60;
-    //观察变化量
-    float rotationX;
-    float rotationY;
+    //相机距离人物高度
+    public float m_Height = 5f;
+    //相机距离人物距离
+    public float m_Distance = 5f;
+    //相机跟随速度
+    public float m_Speed = 4f;
+    //目标位置
+    Vector3 m_TargetPosition;
+    //要跟随的人物
+    public Transform follow;
 
-    private void Awake()
+    //相机平滑的跟随人物移动
+    void LateUpdate()
     {
-        _instance = this;
+        //得到这个目标位置
+        m_TargetPosition = follow.position + Vector3.up * m_Height - follow.forward * m_Distance;
+        //相机位置
+        transform.position = Vector3.Lerp(transform.position, m_TargetPosition, m_Speed * Time.deltaTime);
+        //相机时刻看着人物
+        transform.LookAt(follow);
     }
-
-    void Update()
-    {
-        //rotationY += Input.GetAxis("Mouse Y") * speedY;
-        //rotationY = Mathf.Clamp(rotationY, minY, maxY);
-        //transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-    }
-
-    public void PlayerVerticleRotate(Transform tf)
-    {
-        rotationX += Input.GetAxis("Mouse X") * speedX;
-        if (rotationX < 0)
-        {
-            rotationX += 360;
-        }
-        if (rotationX > 360)
-        {
-            rotationX -= 360;
-        }
-        tf.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-    }
-
-
-    private float localPosZ = -10;
-
-    public Transform center;
-
-    public void LerpLocalPosion()
-    {
-        rotationX += Input.GetAxis("Mouse X") * speedX;
-        if (rotationX < 0)
-        {
-            rotationX += 360;
-        }
-        if (rotationX > 360)
-        {
-            rotationX -= 360;
-        }
-        tf.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-    }
-
-
-
-
 }
