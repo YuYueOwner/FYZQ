@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState ps = PlayerState.Idle;
     //控制机器
     public StateMachine machine;
-
+    private Transform Center;
     //移动速度
     public float moveSpeed = 6.0f;
     //视野转动速度
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-
+        Center = Tools.GetChild<Transform>(this.transform, "Center");
         //IdleState idle = new IdleState(1, this);
         //RunState run = new RunState(2, this);
         //AttackState attack = new AttackState(3, this);
@@ -121,15 +121,11 @@ public class PlayerController : MonoBehaviour
     private void PlayerRotateByMouse()
     {
         rotationX += Input.GetAxis("Mouse X") * speedX;
-        if (rotationX < 0)
-        {
-            rotationX += 360;
-        }
-        if (rotationX > 360)
-        {
-            rotationX -= 360;
-        }
-        this.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+        rotationY += Input.GetAxis("Mouse Y") * speedY;
+
+        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, Tools.ClampAngle(rotationX), 0);
+        Center.transform.localEulerAngles = new Vector3(Tools.ClampAngle(-rotationY, -40, 90), Center.localEulerAngles.y, Center.localEulerAngles.z);
+        Debug.LogError(rotationY);
     }
 
     /// <summary> 键盘AD控制左右旋转 </summary>
@@ -137,7 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         rotationX += Input.GetAxis("Horizontal") * speedX;
         //  transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);
-        this.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, rotationX, 0);
     }
     #endregion
 }
