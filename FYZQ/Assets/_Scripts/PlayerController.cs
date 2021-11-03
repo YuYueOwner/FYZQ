@@ -61,9 +61,8 @@ public class PlayerController : MonoBehaviour
             //旋转
             PlayerRotateByMouse();
             //往前走
-            PlayerMoveByMouse();
+            //PlayerMoveByMouse();
         }
-
         //if (Input.GetMouseButtonDown(0))
         //    ps = PlayerState.Attack;
         //if (Input.GetKey(KeyCode.A))
@@ -104,6 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
         characterController.SimpleMove(forward * moveSpeed);
+        ani.SetBool("isWalk", true);
     }
 
     /// <summary>键盘控制前后移动</summary>
@@ -111,9 +111,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey("w") || Input.GetKey("s"))
         {
+            ani.SetBool("isWalk", true);
             Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
             float curSpeed = moveSpeed * Input.GetAxis("Vertical");
             characterController.SimpleMove(forward * curSpeed);
+        }
+        else
+        {
+            ani.SetBool("isWalk", false);
         }
     }
     #endregion
@@ -125,10 +130,10 @@ public class PlayerController : MonoBehaviour
     {
         rotationX += Input.GetAxis("Mouse X") * speedX;
         rotationY += Input.GetAxis("Mouse Y") * speedY;
+        CameraControl._instance.distance += Input.GetAxis("Mouse Y") * Time.deltaTime * 5;
 
-        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, Tools.ClampAngle(rotationX), 0);
-        Center.transform.localEulerAngles = new Vector3(Tools.ClampAngle(-rotationY, -40, 90), Center.localEulerAngles.y, Center.localEulerAngles.z);
-        //Debug.LogError("rotationX:" + rotationX + "       rotationY:" + rotationY);
+        this.transform.eulerAngles = new Vector3(this.transform.localEulerAngles.x, Tools.ClampAngle(rotationX), 0);
+        Center.transform.localRotation = Quaternion.Euler(new Vector3(Tools.ClampAngle(-rotationY, -40, 85), Center.localEulerAngles.y, Center.localEulerAngles.z));
     }
 
     /// <summary> 键盘AD控制左右旋转 </summary>
@@ -137,8 +142,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("a") || Input.GetKey("d"))
         {
             rotationX += Input.GetAxis("Horizontal") * speedX;
-            //  transform.Rotate(new Vector3(0, h, 0) * Time.deltaTime);
-            this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, rotationX, 0);
+            this.transform.localRotation = Quaternion.Euler(new Vector3(this.transform.localEulerAngles.x, rotationX, 0));
         }
     }
     #endregion

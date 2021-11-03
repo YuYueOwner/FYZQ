@@ -281,5 +281,20 @@ public static class Tools
         }
         return Mathf.Clamp(angle, min, max);
     }
+
+    /// <summary>限制角度</summary>
+    /// <param name="angle"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    public static float CheckAngleInspector(float value)
+    {
+        float angle = value - 180;
+
+        if (angle > 0) return angle - 180;
+
+        return angle + 180;
+    }
+
     #endregion
 }
