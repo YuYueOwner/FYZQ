@@ -35,5 +35,6 @@ public class CameraControl : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, m_TargetPosition, m_Speed * Time.deltaTime);
         //相机时刻看着人物
         transform.LookAt(follow);
+        
     }
 }
