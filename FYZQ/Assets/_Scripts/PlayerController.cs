@@ -22,12 +22,13 @@ public class PlayerController : MonoBehaviour
     //移动速度
     public float moveSpeed = 6.0f;
     //视野转动速度
-    float speedX = 2f, speedY = 2f;
+    float speedX = 0.5f, speedY = 2f;
     //观察变化量
     float rotationX, rotationY;
 
     void Start()
     {
+        targetPoint = transform.position;
         ani = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         Center = Tools.GetChild<Transform>(this.transform, "Center");
@@ -40,7 +41,8 @@ public class PlayerController : MonoBehaviour
         //machine.AddState(attack);
     }
     private float time = 0.2f;
-
+    Vector3 targetPoint = Vector3.zero;     //鼠标点击的位置
+    private bool isMove = false;
     void Update()
     {
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
@@ -55,10 +57,10 @@ public class PlayerController : MonoBehaviour
             //向鼠标点击的位置发射一条射线 && 射线检测到的物体是当前挂着该脚本的物体
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                //点击的时间间隔在0.2s内
+                //双击
                 if ((Time.realtimeSinceStartup - time) < 0.2f)
                 {
-                    Debug.Log("Double Click");
+                   
                 }
                 else
                 {
@@ -66,7 +68,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
         PlayerMoveByKey();
         PlayerRotateByKey();
 
@@ -122,22 +123,41 @@ public class PlayerController : MonoBehaviour
     /// <summary>鼠标控制玩家往前移动</summary>
     private void PlayerMoveByMouse()
     {
+        if (Input.GetKey("s")) return;
         characterController.SimpleMove(transform.forward * moveSpeed);
         ani.SetBool("isWalk", true);
     }
 
+    bool isWalk = false;
+    bool isWalkBack = false;
+
     /// <summary>键盘控制前后移动</summary>
     private void PlayerMoveByKey()
     {
-        if (Input.GetKey("w") || Input.GetKey("s"))
+        if (Input.GetKey("w"))
         {
+            isWalk = true;
             ani.SetBool("isWalk", true);
             float curSpeed = moveSpeed * Input.GetAxis("Vertical");
             characterController.SimpleMove(transform.forward * curSpeed);
         }
         else
         {
+            isWalk = false;
             ani.SetBool("isWalk", false);
+        }
+
+        if (isWalk) return;
+
+        if (Input.GetKey("s"))
+        {
+            ani.SetBool("isBack", true);
+            float curSpeed = moveSpeed * Input.GetAxis("Vertical");
+            characterController.SimpleMove(transform.forward * curSpeed);
+        }
+        else
+        {
+            ani.SetBool("isBack", false);
         }
     }
     #endregion
@@ -149,7 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         rotationX += Input.GetAxis("Mouse X") * speedX;
         rotationY += Input.GetAxis("Mouse Y") * speedY;
-        CameraControl._instance.distance += Input.GetAxis("Mouse Y") * Time.deltaTime * 5;
+        CameraControl._instance.distance += Input.GetAxis("Mouse Y") * Time.deltaTime * 2;
 
         this.transform.eulerAngles = new Vector3(this.transform.localEulerAngles.x, Tools.ClampAngle(rotationX), 0);
         Center.transform.localRotation = Quaternion.Euler(new Vector3(Tools.ClampAngle(-rotationY, -40, 85), Center.localEulerAngles.y, Center.localEulerAngles.z));
