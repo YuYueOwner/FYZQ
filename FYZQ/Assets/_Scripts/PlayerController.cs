@@ -39,16 +39,37 @@ public class PlayerController : MonoBehaviour
         //machine.AddState(run);
         //machine.AddState(attack);
     }
+    private float time = 0.2f;
 
     void Update()
     {
-        PlayerMoveByKey();
-        PlayerRotateByKey();
-
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
             rotationX = this.transform.eulerAngles.y;
         }
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            //向鼠标点击的位置发射一条射线 && 射线检测到的物体是当前挂着该脚本的物体
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                //点击的时间间隔在0.2s内
+                if ((Time.realtimeSinceStartup - time) < 0.2f)
+                {
+                    Debug.Log("Double Click");
+                }
+                else
+                {
+                    time = Time.realtimeSinceStartup;
+                }
+            }
+        }
+
+        PlayerMoveByKey();
+        PlayerRotateByKey();
+
 
         if (Input.GetMouseButton(1))
         {

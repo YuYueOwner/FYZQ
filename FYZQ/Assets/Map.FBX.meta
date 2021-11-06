@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: f9a6a6d6a67863e4e853eac9b5b1d1e8
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: dimian01
+    100004: lu
+    100006: lu002
+    100008: lu002 1
+    100010: lu004
+    100012: menggubao
+    100014: po001
+    100016: po002
+    100018: po003
+    100020: po004
+    100022: shibi001
+    100024: shitou
+    100026: shu
+    100028: shui
+    100030: tudimiao
+    400000: //RootNode
+    400002: dimian01
+    400004: lu
+    400006: lu002
+    400008: lu002 1
+    400010: lu004
+    400012: menggubao
+    400014: po001
+    400016: po002
+    400018: po003
+    400020: po004
+    400022: shibi001
+    400024: shitou
+    400026: shu
+    400028: shui
+    400030: tudimiao
+    2100000: 11
+    2100002: "\u623F\u6A90"
+    2100004: "\u5927\u95E8"
+    2100006: 9
+    2100008: surf_0117out_
+    2100010: 666
+    2100012: "\u95E8\u6846\u4E24\u4FA7"
+    2100014: "\u77F3\u7891\u8D34\u56FE"
+    2100016: "\u4E8C\u697C\u5899\u9762"
+    2100018: 4444
+    2100020: 555
+    2100022: 6
+    2100024: surf_0116out
+    2100026: 1
+    2100028: dimian
+    2100030: tietu12
+    2100032: tietu333
+    2100034: 2
+    2100036: 13
+    2100038: 14
+    2100040: "\u6750\u8D28.013"
+    2100042: "\u571F\u5730\u5E99\u4FA7\u9762"
+    2100044: "\u571F\u5730\u5E991"
+    2100046: "\u571F\u5730\u5E99\u5C4B\u9876"
+    2100048: "\u571F\u5730\u5E993"
+    2100050: "\u571F\u5730\u5E99\u524D\u9762\u653E\u7684\u9999\u7089"
+    2300000: dimian01
+    2300002: lu
+    2300004: lu002
+    2300006: lu002 1
+    2300008: lu004
+    2300010: menggubao
+    2300012: po001
+    2300014: po002
+    2300016: po003
+    2300018: po004
+    2300020: shibi001
+    2300022: shitou
+    2300024: shu
+    2300026: shui
+    2300028: tudimiao
+    3300000: dimian01
+    3300002: lu
+    3300004: lu002
+    3300006: lu002 1
+    3300008: lu004
+    3300010: menggubao
+    3300012: po001
+    3300014: po002
+    3300016: po003
+    3300018: po004
+    3300020: shibi001
+    3300022: shitou
+    3300024: shu
+    3300026: shui
+    3300028: tudimiao
+    4300000: menggubao
+    4300002: shu
+    4300004: shui
+    4300006: shitou
+    4300008: dimian01
+    4300010: po001
+    4300012: po002
+    4300014: shibi001
+    4300016: po003
+    4300018: po004
+    4300020: lu
+    4300022: lu002
+    4300024: tudimiao
+    4300026: lu002
+    4300028: lu004
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
