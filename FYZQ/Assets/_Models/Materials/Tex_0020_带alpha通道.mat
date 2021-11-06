@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: "Tex_0020_\u5E26alpha\u901A\u9053"
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON
+  m_ShaderKeywords: _ALPHABLEND_ON _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f5267b909a7a1634980ca477748c1908, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e70e85b1ee3d75428de043e8895445a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -63,16 +63,16 @@ Material:
     - _DstBlend: 10
     - _GlossMapScale: 1
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SrcBlend: 5
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color: {r: 0.8962264, g: 0.8962264, b: 0.5284354, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
