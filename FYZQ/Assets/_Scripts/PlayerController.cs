@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             //旋转
             PlayerRotateByMouse();
             //往前走
-            //PlayerMoveByMouse();
+            PlayerMoveByMouse();
         }
         //if (Input.GetMouseButtonDown(0))
         //    ps = PlayerState.Attack;
@@ -101,8 +101,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>鼠标控制玩家往前移动</summary>
     private void PlayerMoveByMouse()
     {
-        Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
-        characterController.SimpleMove(forward * moveSpeed);
+        characterController.SimpleMove(transform.forward * moveSpeed);
         ani.SetBool("isWalk", true);
     }
 
@@ -112,9 +111,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("w") || Input.GetKey("s"))
         {
             ani.SetBool("isWalk", true);
-            Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
             float curSpeed = moveSpeed * Input.GetAxis("Vertical");
-            characterController.SimpleMove(forward * curSpeed);
+            characterController.SimpleMove(transform.forward * curSpeed);
         }
         else
         {
